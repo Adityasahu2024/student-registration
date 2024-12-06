@@ -1,0 +1,171 @@
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f3f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(135deg, #6e7bff, #3a64e1);
+    animation: backgroundAnimation 5s ease-in-out infinite alternate;
+}
+
+/* Container Styles */
+.container {
+    max-width: 550px;
+    width: 100%;
+    padding: 40px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.03);
+}
+
+/* Heading Styles */
+h1 {
+    color: #3a64e1;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Label Styles */
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+label:hover {
+    color: #3a64e1;
+}
+
+/* Input and Select Styles */
+input, select {
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    border-color: #3a64e1;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(58, 100, 225, 0.3);
+}
+
+/* Button Styles */
+button {
+    padding: 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #3a64e1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(58, 100, 225, 0.3);
+}
+
+button:hover {
+    background-color: #2a50c6;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(58, 100, 225, 0.5);
+}
+
+button:active {
+    background-color: #2a50c6;
+    transform: translateY(0);
+}
+
+/* Response Message Styles */
+#responseMessage {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#responseMessage.green {
+    color: #28a745;
+}
+
+#responseMessage.red {
+    color: #dc3545;
+}
+
+/* Animation for container */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Background Animation */
+@keyframes backgroundAnimation {
+    0% {
+        background-image: linear-gradient(135deg, #6e7bff, #3a64e1);
+    }
+    50% {
+        background-image: linear-gradient(135deg, #ff6a00, #d12a72);
+    }
+    100% {
+        background-image: linear-gradient(135deg, #6e7bff, #3a64e1);
+    }
+}
+
+/* Fade In Up animation for headings */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In animation for messages */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+

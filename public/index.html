@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Registration</h1>
+        <form id="registrationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required minlength="3" maxlength="50" placeholder="Enter your name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter a valid email address">
+        
+            <label for="event">Select Event:</label>
+            <select id="event" name="event" required>
+                <option value="">Choose an event</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="Coding Bootcamp">Coding Bootcamp</option>
+                <option value="AI Workshop">AI Workshop</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Data Structure">Data Structure</option>
+            </select>
+        
+            <button type="submit">Register</button>
+        </form>
+        
+        <p id="responseMessage"></p>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+    
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const event = document.getElementById("event").value;
+    
+            // Validate Name
+            if (name.length < 3) {
+                alert("Name must be at least 3 characters long.");
+                return;
+            }
+    
+            // Validate Email
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+    
+            // Validate Event Selection
+            if (!event) {
+                alert("Please select an event.");
+                return;
+            }
+    
+            // Send data to the backend using fetch
+            fetch("http://localhost:5000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, event })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const responseMessage = document.getElementById("responseMessage");
+                if (data.message === "Registration successful!") {
+                    responseMessage.textContent = "Registration successful!";
+                    responseMessage.style.color = "green";
+                } else {
+                    responseMessage.textContent = data.message;
+                    responseMessage.style.color = "red";
+                }
+            })
+            .catch(error => {
+                document.getElementById("responseMessage").textContent = "There was an error with your registration.";
+                document.getElementById("responseMessage").style.color = "red";
+            });
+        });
+    </script>
+    
+</body>
+</html>
